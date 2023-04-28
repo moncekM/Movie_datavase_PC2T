@@ -1,7 +1,8 @@
- 
+import java.util.List;
+
 public class actor {
 private String name;
-private String movie;
+List<String> movies;
  
 	public actor () {
 	
@@ -14,13 +15,4 @@ private String movie;
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getMovie() {
-		return movie;
-	}
-
-	public void setMovie(String movie) {
-		this.movie = movie;
-	}
-
 }

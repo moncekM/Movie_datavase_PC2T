@@ -1,6 +1,7 @@
 
 public class MainLogic {
-public static void addMovie() {
+
+	private static void addMovie() {
 	
 }
 

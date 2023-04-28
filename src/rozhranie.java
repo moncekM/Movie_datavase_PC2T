@@ -17,11 +17,12 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.awt.event.ActionEvent;
 
 
 public class rozhranie extends JFrame {
-
+	
 	
 	
 	/**
@@ -36,6 +37,7 @@ public class rozhranie extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		});
 	}
@@ -125,7 +127,7 @@ public class rozhranie extends JFrame {
 	
 	
 	private JPanel contentPane;
-	
+
 
 }
 
