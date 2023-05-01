@@ -15,20 +15,23 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
 
-public class addMovie extends JDialog {
+public class updatemovie extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	public String Moviename;
 	public String Directornmae;
 	public int Releaseyear;
 	public int pegiyear;
+	public String findname;
+	public Movie findmovie;
+	private animMovies findanimmovie;
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			addMovie dialog = new addMovie();
+			updatemovie dialog = new updatemovie();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -39,9 +42,9 @@ public class addMovie extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public addMovie() {
-		setTitle("Pridanie nového filmu:");
-		setBounds(100, 100, 450, 300);
+	public updatemovie() {
+		setTitle("Upravenie exsistujúceho filmu:");
+		setBounds(100, 100, 529, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,13 +61,13 @@ public class addMovie extends JDialog {
 						Directornmae=textField_1.getText();	
 						Releaseyear =(Integer) spinner_1.getValue();
 						pegiyear= (Integer) spinner.getValue();
-						if (rdbtnNewRadioButton.isSelected()) {
-						movieDatabase.getInstance() .SetActMovie(Moviename, Directornmae, Releaseyear);
-						}
-						else {
-						movieDatabase.getInstance() .SetAnimMovie(Moviename, Directornmae, Releaseyear,pegiyear);
-						}
-						actorDatabase.getInstance() .SetActors(Moviename);
+						if (findmovie.isType()) {
+							movieDatabase.getInstance() .updateAnimMovie(Moviename, Directornmae, Releaseyear, pegiyear);
+							}
+							else {
+								movieDatabase.getInstance() .updteActMovie(Moviename, Directornmae, Releaseyear);
+							
+							}
 						dispose();
 					}
 			
@@ -87,17 +90,32 @@ public class addMovie extends JDialog {
 			JPanel panel = new JPanel();
 			getContentPane().add(panel, BorderLayout.NORTH);
 			
-			JLabel lblNewLabel = new JLabel("prosím zvolte si typ filmu:");
+			JLabel lblNewLabel = new JLabel("prosím zadajte názov filmu ktorý chcete upraviť:");
 			panel.add(lblNewLabel);
 			
-			ButtonGroup choice = new ButtonGroup();
-			rdbtnNewRadioButton = new JRadioButton("Hraný film");
-			panel.add(rdbtnNewRadioButton);
-			choice.add(rdbtnNewRadioButton);
+			textField_2 = new JTextField();
+			panel.add(textField_2);
+			textField_2.setColumns(10);
 			
-			JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Animovaný film");
-			panel.add(rdbtnNewRadioButton_1);
-			choice.add(rdbtnNewRadioButton_1);
+			JButton btnNajsFilm = new JButton("najsť film");
+			btnNajsFilm.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				findname=textField_2.getText();
+				if(movieDatabase.getInstance().movies.containsKey(findname));{
+				findmovie=movieDatabase.getInstance().movies.get(findname);
+				textField.setText(findmovie.getName());
+				textField_1.setText(findmovie.getDirector());	
+				spinner_1.setValue(findmovie.getReleaseyear());
+				if(findmovie.isType()) {
+					findanimmovie=(animMovies) findmovie;
+					pegiyear= (Integer) spinner.getValue(); 
+				}
+				
+				}
+				
+				}
+			});
+			panel.add(btnNajsFilm);
 			
 			JPanel panel_1 = new JPanel();
 			getContentPane().add(panel_1, BorderLayout.CENTER);
@@ -128,7 +146,7 @@ public class addMovie extends JDialog {
 			JLabel lblNewLabel_5 = new JLabel("Zadanie zoznamu hercov:");
 			panel_1.add(lblNewLabel_5);
 			
-			JButton btnNewButton = new JButton("Pridanie Herca/ Animátora");
+			JButton btnNewButton = new JButton("úprava zoznamu hercov / animátorov");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
@@ -165,5 +183,5 @@ public class addMovie extends JDialog {
 	private JTextField textField_1;
 	private JSpinner spinner;
 	private JSpinner spinner_1;
-	private JRadioButton rdbtnNewRadioButton;
+	private JTextField textField_2;
 }

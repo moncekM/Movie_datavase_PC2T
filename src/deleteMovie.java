@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class deleteMovie extends JDialog {
 
@@ -32,7 +34,7 @@ public class deleteMovie extends JDialog {
 	 */
 	public deleteMovie() {
 		setTitle("zmazanie filmu");
-		setBounds(100, 100, 354, 168);
+		setBounds(100, 100, 551, 168);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -58,6 +60,11 @@ public class deleteMovie extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

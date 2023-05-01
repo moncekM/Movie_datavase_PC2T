@@ -15,15 +15,39 @@ public class movieDatabase {
 	   }
 public  void SetActMovie (String moviename, String directorname, int releaseyear) {
 	 
-	if (true != movies.containsKey(moviename)){
-		movies.put(moviename ,new actMovie(moviename,directorname, releaseyear));	
+	if (movies.containsKey(moviename)){
+		
+	}
+	else {
+		movies.put(moviename ,new actMovie(moviename,directorname, releaseyear,false));	
 	}
 }
 public  void SetAnimMovie (String moviename, String directorname, int releaseyear, int pegiyear) {
 	 
-	if (true != movies.containsKey(moviename)){
-		movies.put(moviename ,new animMovies(moviename,directorname, releaseyear,pegiyear));	
+	if (movies.containsKey(moviename)){
+		
+	}
+	else {
+		movies.put(moviename ,new animMovies(moviename,directorname, releaseyear,pegiyear,true));	
+	}
+	
+}
+public  void updteActMovie (String moviename, String directorname, int releaseyear) {
+	 
+	if (movies.containsKey(moviename)){
+		movies.put(moviename ,new actMovie(moviename,directorname, releaseyear,false));	
+	}
+	else {
+		
 	}
 }
-
+public  void updateAnimMovie (String moviename, String directorname, int releaseyear, int pegiyear) {
+	 
+	if (movies.containsKey(moviename)){
+		movies.put(moviename ,new animMovies(moviename,directorname, releaseyear,pegiyear,true));	
+	}
+	else {
+		
+	}
+}
 }

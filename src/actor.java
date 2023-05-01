@@ -1,11 +1,13 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class actor {
 private String name;
-List<String> movies;
+public List<String> movielist;
  
-	public actor () {
-	
+	public actor (String name) {
+	this.name = name;
+	movielist =	new ArrayList<String>();
 }
 
 	public String getName() {
@@ -15,4 +17,9 @@ List<String> movies;
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public void setMovies(String movies) {
+		movielist.add(movies);
+	}
+	
 }

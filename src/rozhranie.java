@@ -74,7 +74,7 @@ public class rozhranie extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					editMovie dialog = new editMovie();
+					updatemovie dialog = new updatemovie();
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 				} catch (Exception e1) {

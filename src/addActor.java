@@ -10,12 +10,17 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class addActor extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
+	private String Actorname;
+	
+
 
 	/**
 	 * Launch the application.
@@ -66,6 +71,13 @@ public class addActor extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Actorname = textField.getText();
+						actorDatabase.tempactorlist.add(new actor (Actorname));
+						dispose();
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -74,7 +86,7 @@ public class addActor extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						 System.exit(0);
+						dispose();
 					}
 				});
 				cancelButton.setActionCommand("Cancel");

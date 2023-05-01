@@ -6,14 +6,17 @@ public abstract class Movie {
 private String name;
 private String director;
 private int releaseyear;
+private boolean type;
+
+
 private List<rateing> rateinglist = new ArrayList<>(); 
-private HashMap<String, actor> databazahercov;
 
 
-public Movie (String name, String director, int releaseyear) {
+public Movie (String name, String director, int releaseyear, boolean type) {
 this.name = name;
 this.director = director;
 this.releaseyear = releaseyear;
+this.type=type;
 }
 	
 	public String getName() {
@@ -37,6 +40,13 @@ this.releaseyear = releaseyear;
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	public boolean isType() {
+		return type;
+	}
+
+	public void setType(boolean type) {
+		this.type = type;
 	}
 	
 }
