@@ -1,13 +1,17 @@
 
 public class rateing {
-int hodnotenie;
+int Rateing;
 String Coment;
 
+public rateing (int rateing, String Coment) {
+	this.Rateing=rateing;
+	this.Coment=Coment;
+}
 public int getHodnotenie() {
-	return hodnotenie;
+	return Rateing;
 }
 public void setHodnotenie(int hodnotenie) {
-	this.hodnotenie = hodnotenie;
+	this.Rateing = hodnotenie;
 }
 public String getComent() {
 	return Coment;

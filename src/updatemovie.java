@@ -111,6 +111,7 @@ public class updatemovie extends JDialog {
 					pegiyear= (Integer) spinner.getValue(); 
 				}
 				
+				
 				}
 				
 				}
@@ -143,14 +144,15 @@ public class updatemovie extends JDialog {
 			panel_1.add(spinner_1);
 			
 			
-			JLabel lblNewLabel_5 = new JLabel("Zadanie zoznamu hercov:");
+			JLabel lblNewLabel_5 = new JLabel("úprava zoznamu hercov:");
 			panel_1.add(lblNewLabel_5);
 			
 			JButton btnNewButton = new JButton("úprava zoznamu hercov / animátorov");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					actorDatabase.getInstance().actorsFromMovie(findmovie.getName());
 					try {
-						addActor dialog = new addActor();
+						update_actorlist dialog = new update_actorlist();
 						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 						dialog.setVisible(true);
 					} catch (Exception e1) {
@@ -179,6 +181,7 @@ public class updatemovie extends JDialog {
 		
 		
 	}
+
 	private JTextField textField;
 	private JTextField textField_1;
 	private JSpinner spinner;

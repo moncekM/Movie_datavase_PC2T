@@ -99,6 +99,8 @@ public class addMovie extends JDialog {
 			panel.add(rdbtnNewRadioButton_1);
 			choice.add(rdbtnNewRadioButton_1);
 			
+			
+			
 			JPanel panel_1 = new JPanel();
 			getContentPane().add(panel_1, BorderLayout.CENTER);
 			panel_1.setLayout(new GridLayout(0, 2, 0, 0));

@@ -8,15 +8,16 @@ private String director;
 private int releaseyear;
 private boolean type;
 
-
-private List<rateing> rateinglist = new ArrayList<>(); 
+private List<rateing> rateinglist; 
 
 
 public Movie (String name, String director, int releaseyear, boolean type) {
-this.name = name;
+	rateinglist = new ArrayList<>(); 
+	this.name = name;
 this.director = director;
 this.releaseyear = releaseyear;
 this.type=type;
+
 }
 	
 	public String getName() {
@@ -48,5 +49,12 @@ this.type=type;
 	public void setType(boolean type) {
 		this.type = type;
 	}
-	
+	public void setrateing(int rateing,String Coment ) {
+		rateinglist.add(new rateing(rateing, Coment));
+	}
+	public List<rateing> getrateing(){
+		
+		return rateinglist;
+		
+	}
 }

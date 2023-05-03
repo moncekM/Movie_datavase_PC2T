@@ -15,6 +15,7 @@ public class deleteMovie extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
+	private String moviename;
 
 	/**
 	 * Launch the application.
@@ -54,6 +55,13 @@ public class deleteMovie extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					moviename=textField.getText();
+					movieDatabase.getInstance().deletemovie(moviename);
+					
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
