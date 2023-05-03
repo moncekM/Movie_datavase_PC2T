@@ -131,10 +131,26 @@ public class rozhranie extends JFrame {
 		contentPane.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Vyhladanie filmu");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					findMovie dialog = new findMovie();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton_5.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		contentPane.add(btnNewButton_5);
 		
-		JButton btnNewButton_6 = new JButton("výpis filmov podľa apojenia herca");
+		JButton btnNewButton_6 = new JButton("výpis filmov podľa zapojenia herca");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnNewButton_6.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		contentPane.add(btnNewButton_6);
 		

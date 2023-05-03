@@ -12,6 +12,7 @@ public class actorDatabase {
 	private String Moviename;
 	public static List<actor> tempactorlist = new ArrayList<actor>();
 	public static List<actor> movieactorlist = new ArrayList<actor>();
+	public static List<actor> multimovieactor = new ArrayList<actor>();
 	private actorDatabase() {
 		actors = new HashMap<String, actor>();
 	}
@@ -89,4 +90,17 @@ public void deletemovie(String moviename) {
 		}
 		
 }
+public void multimovieactors() {
+	multimovieactor.clear();
+	Set <String> klice =actors.keySet();
+
+	for (String actor : klice) {
+	actactor= actors.get(actor);
+	for (String m :actactor.movielist) {
+	if (actactor.movielist.size()==2) {
+	multimovieactor.add(actactor);
+	}
+	}
+	}
+	}
 }

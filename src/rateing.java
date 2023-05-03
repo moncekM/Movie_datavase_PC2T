@@ -1,5 +1,5 @@
 
-public class rateing {
+public class rateing implements Comparable<rateing>{
 int Rateing;
 String Coment;
 
@@ -18,6 +18,11 @@ public String getComent() {
 }
 public void setComent(String coment) {
 	Coment = coment;
+}
+@Override
+public int compareTo(rateing o) {
+	Integer rate = Rateing;
+	return rate.compareTo(o.getHodnotenie());
 }
 
 }

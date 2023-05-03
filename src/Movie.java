@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.sound.sampled.ReverbType;
 
 public abstract class Movie {
 private String name;
@@ -53,7 +56,7 @@ this.type=type;
 		rateinglist.add(new rateing(rateing, Coment));
 	}
 	public List<rateing> getrateing(){
-		
+		Collections.sort(rateinglist);
 		return rateinglist;
 		
 	}

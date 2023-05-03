@@ -1,28 +1,30 @@
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import java.awt.Font;
 
-public class findMovie extends JDialog {
-
+public class ListofActors extends JDialog {
+	
 	public String findname;
-	public Movie findmovie;
+	public actor findactor;
 	public int Rateing;
 	public String Coment;
 	private animMovies findanimmovie;
 	private JTextArea textArea;
 	private List<rateing> findrateinglist;
+
 	private final JPanel contentPanel = new JPanel();
 
 	/**
@@ -30,7 +32,7 @@ public class findMovie extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			findMovie dialog = new findMovie();
+			ListofActors dialog = new ListofActors();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -41,9 +43,9 @@ public class findMovie extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public findMovie() {
-		setTitle("Vyhladanie filmu z databázy:");
-		setBounds(100, 100, 529, 300);
+	public ListofActors() {
+		setTitle("Výpis Hercov podľa mena/ alebo hercov ktorý sa podielali na viac ako 1 filme:");
+		setBounds(100, 100, 670, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,12 +59,16 @@ public class findMovie extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("List");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
-						
-						dispose();
+						for (actor a :actorDatabase.multimovieactor) {
+							textArea.append("Umelec"+a.getName()+" sa podielal na: \n");
+						for (String m :a.movielist){
+							textArea.append(m+"\n");	
+						}
+						}
 					}
 			
 				});
@@ -84,45 +90,27 @@ public class findMovie extends JDialog {
 			JPanel panel = new JPanel();
 			getContentPane().add(panel, BorderLayout.NORTH);
 			
-			JLabel lblNewLabel = new JLabel("prosím zadajte meno hľadaného filmu:");
+			JLabel lblNewLabel = new JLabel("prosím zadajte meno hladanáho herca:");
 			panel.add(lblNewLabel);
 			
 			textField_2 = new JTextField();
 			panel.add(textField_2);
 			textField_2.setColumns(10);
 			
-			JButton btnNajsFilm = new JButton("najsť film");
+			JButton btnNajsFilm = new JButton("najsť herca:");
 			btnNajsFilm.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				findname=textField_2.getText();
-				if(movieDatabase.getInstance().movies.containsKey(findname));{
-				findmovie=movieDatabase.getInstance().movies.get(findname);
-				textArea.append("Názov filmu:" +findmovie.getName()+"\n");
-				textArea.append("Režisér filmu:" +findmovie.getDirector()+"\n");
-				textArea.append("Film vyšiel v:" +findmovie.getReleaseyear()+"\n");
-				if(findmovie.isType()) {
-					findanimmovie=(animMovies) findmovie;
-					textArea.append("Doporučený vek diváka pre daný film je "+findanimmovie.getPegiyear()+"rokov \n");
-					textArea.append("Animátory ktorý sa podielali na filme:\n");
+				if(actorDatabase.getInstance().actors.containsKey(findname));{
+				findactor= actorDatabase.getInstance().actors.get(findname);
+				textArea.append(findactor.getName()+"Sa podielal na : \n");
+				for (String m :findactor.movielist) {
+				textArea.append(m+"\n");	
 				}
-				else {
-					textArea.append("Vo filme Hrajú:\n");
-				}
-				actorDatabase.getInstance().actorsFromMovie(findname);
-				for(actor a :actorDatabase.movieactorlist) {
-					textArea.append(a.getName()+"\n");	
-				}
-				}
-				findrateinglist = findmovie.getrateing();
 				
-				for(rateing r : findrateinglist) {
-				if(findmovie.isType()) {
-					textArea.append("Hodnotenie diváka je: " +r.getHodnotenie()+ " Bodov\n");
 				}
-				else {
-					textArea.append("Hodnotenie diváka je: " +r.getHodnotenie()+ " Hviezdičiek");
-				}
-				textArea.append("Prýpadný slivní komentár od diváka " +r.getComent()+ "\n");
+				if(true != actorDatabase.getInstance().actors.containsKey(findname));{
+					JOptionPane.showMessageDialog(null, "hladaný herec, nexsistuje");	
 				}
 				}
 			});
@@ -134,3 +122,5 @@ public class findMovie extends JDialog {
 	}
 	private JTextField textField_2;
 }
+
+
